@@ -154,12 +154,27 @@ namespace DX11_Base
                     SetPlayerNickname(s);
                 }
 
-                ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x * .3);
+                /*ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x * .3);
                 ImGui::InputInt("##ADD_TECH_POINTS", &inputTechPoints_buffer);
                 ImGui::SameLine();
                 if (ImGui::Button("TECH POINTS"))
                 {
                     AddTechPoints(inputTechPoints_buffer);
+                    inputTechPoints_buffer = 1;
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("ANCIENT TECH POINTS", ImVec2(ImGui::GetContentRegionAvail().x, 0)))
+                {
+                    AddAncientTechPoints(inputTechPoints_buffer);
+                    inputTechPoints_buffer = 1;
+                }*/
+
+                ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x * .3);
+                ImGui::InputInt("##ADD_TECH_POINTS", &inputTechPoints_buffer);
+                ImGui::SameLine();
+                if (ImGui::Button("TECH POINTS"))
+                {
+                    GiveTechExploit(inputTechPoints_buffer);
                     inputTechPoints_buffer = 1;
                 }
                 ImGui::SameLine();
@@ -481,7 +496,7 @@ namespace DX11_Base
 
                 ImGui::InputInt("Num To Add", &num_to_add);
 
-                ImGui::Combo("Item Category", &category, "Accessories\0Ammo\0Armor\0Blueprints\0Crafting Materials\0Eggs\0Food\0Hats\0Medicine\0Money\0Other\0Pal Spheres\0Seeds\0Tools\0Weapons\0");
+                ImGui::Combo("Item Category", &category, "Accessories\0Ammo\0Armor\0Blueprints\0Skills\0Crafting Materials\0Eggs\0Food\0Hats\0Medicine\0Money\0Other\0Pal Spheres\0Seeds\0Tools\0Weapons\0");
 
                 std::initializer_list list = itemlist::accessories;
 
@@ -490,18 +505,19 @@ namespace DX11_Base
                     case 1: list = itemlist::ammo; break;
                     case 2: list = itemlist::armor; break;
                     case 3: list = itemlist::blueprints; break;
-                    case 4: list = itemlist::craftingmaterials; break;
-                    case 5: list = itemlist::eggs; break;
-                    case 6: list = itemlist::food; break;
-                    case 7: list = itemlist::hats; break;
-                    case 8: list = itemlist::medicine; break;
-                    case 9: list = itemlist::money; break;
-                    case 10: list = itemlist::other; break;
-                    case 11: list = itemlist::palspheres; break;
-                    case 12: list = itemlist::seeds; break;
-                    case 13: list = itemlist::tools; break;
-                    case 14: list = itemlist::weapons; break;
-                    default: list = itemlist::accessories; break;
+                    case 4: list = itemlist::skills; break;
+                    case 5: list = itemlist::craftingmaterials; break;
+                    case 6: list = itemlist::eggs; break;
+                    case 7: list = itemlist::food; break;
+                    case 8: list = itemlist::hats; break;
+                    case 9: list = itemlist::medicine; break;
+                    case 10: list = itemlist::money; break;
+                    case 11: list = itemlist::other; break;
+                    case 12: list = itemlist::palspheres; break;
+                    case 13: list = itemlist::seeds; break;
+                    case 14: list = itemlist::tools; break;
+                    case 15: list = itemlist::weapons; break;
+                    default: list = itemlist::craftingmaterials; break;
                 }
 
                 int cur_size = 0;
@@ -698,7 +714,7 @@ namespace DX11_Base
         //  Display Menu Content
         //Tabs::TABMain();
 
-        ImGui::Text("Testing some case...");
+        
 
         if (ImGui::BeginTabBar("##tabs", ImGuiTabBarFlags_None))
         {
@@ -782,7 +798,7 @@ namespace DX11_Base
         auto top_center = ImVec2({ draw_size.x * .5f, draw_size.y * 0.0f });
         
         //  Watermark
-        ImDraw->AddText(top_center, g_Menu->dbg_RAINBOW, "PalWorld-NetCrack");
+        //ImDraw->AddText(top_center, g_Menu->dbg_RAINBOW, "PalWorld-NetCrack");
 
         if (Config.IsESP)
             ESP();

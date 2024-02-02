@@ -45,6 +45,7 @@ public:
 	int DamageUp = 0;
 	int DefuseUp = 0;
 	int EXP = 0;
+	int Tech = 0;
 	int Item = 0;
 	float Pos[3] = { 0,0,0 };
 	char ItemName[255];

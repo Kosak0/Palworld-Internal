@@ -46,7 +46,7 @@ DWORD WINAPI MainThread_Initialize()
     std::thread WCMUpdate(ClientBGThread); // Initialize Loops Thread
     while (g_Running)
     {
-        if (GetAsyncKeyState(VK_INSERT) & 1)
+        if (GetAsyncKeyState(VK_HOME) & 1)
         {
             g_GameVariables->m_ShowMenu = !g_GameVariables->m_ShowMenu;
             g_GameVariables->m_ShowHud = !g_GameVariables->m_ShowMenu;

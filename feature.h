@@ -43,6 +43,12 @@ void ResetStamina();
 
 void GiveExperiencePoints(__int32 mXP);
 
+void GiveTechExploit(__int32 Tech);
+
+/* NO FUNCIONA DE MOMENTO
+void GiveBossTechExploit(__int32 Tech);
+*/
+
 void SetPlayerAttackParam(__int32 mNewAtk);
 
 void SetPlayerDefenseParam(__int32 mNewDef);

@@ -433,6 +433,39 @@ void GiveExperiencePoints(__int32 mXP)
 	pPalPlayerState->GrantExpForParty(mXP);
 }
 
+//
+void GiveTechExploit(__int32 Tech)
+{
+	SDK::APalPlayerCharacter* pPalPlayerCharacter = Config.GetPalPlayerCharacter();
+	if (!pPalPlayerCharacter)
+		return;
+
+	APalPlayerController* pPalPlayerController = pPalPlayerCharacter->GetPalPlayerController();
+	if (!pPalPlayerController)
+		return;
+
+
+
+	pPalPlayerController->Transmitter->GetPlayer()->RequestAddTechnolgyPoint_ToServer(Tech);
+}
+
+/* NO FUNCIONA DE MOMENTO
+void GiveBossTechExploit(__int32 Tech)
+{
+	SDK::APalPlayerCharacter* pPalPlayerCharacter = Config.GetPalPlayerCharacter();
+	if (!pPalPlayerCharacter)
+		return;
+
+	APalPlayerController* pPalPlayerController = pPalPlayerCharacter->GetPalPlayerController();
+	if (!pPalPlayerController)
+		return;
+
+
+
+	pPalPlayerController->Transmitter->GetPlayer()->RequestAddBossTechnolgyPoint_ToServer(Tech);
+}
+*/
+
 //	
 void SetPlayerAttackParam(__int32 mNewAtk)
 {
