@@ -2220,22 +2220,11 @@ static void         Decode85(const unsigned char* src, unsigned char* dst)
 // Load embedded ProggyClean.ttf at size 13, disable oversampling
 ImFont* ImFontAtlas::AddFontDefault(const ImFontConfig* font_cfg_template)
 {
-    ImFontConfig font_cfg = font_cfg_template ? *font_cfg_template : ImFontConfig();
-    if (!font_cfg_template)
-    {
-        font_cfg.OversampleH = font_cfg.OversampleV = 1;
-        font_cfg.PixelSnapH = true;
-    }
-    if (font_cfg.SizePixels <= 0.0f)
-        font_cfg.SizePixels = 13.0f * 1.0f;
-    if (font_cfg.Name[0] == '\0')
-        ImFormatString(font_cfg.Name, IM_ARRAYSIZE(font_cfg.Name), "ProggyClean.ttf, %dpx", (int)font_cfg.SizePixels);
-    font_cfg.EllipsisChar = (ImWchar)0x0085;
-    font_cfg.GlyphOffset.y = 1.0f * IM_TRUNC(font_cfg.SizePixels / 13.0f);  // Add +1 offset per 13 units
-
-    const char* ttf_compressed_base85 = GetDefaultCompressedFontDataTTFBase85();
-    const ImWchar* glyph_ranges = font_cfg.GlyphRanges != NULL ? font_cfg.GlyphRanges : GetGlyphRangesDefault();
-    ImFont* font = AddFontFromMemoryCompressedBase85TTF(ttf_compressed_base85, font_cfg.SizePixels, &font_cfg, glyph_ranges);
+    ImGuiIO& io = ImGui::GetIO();
+    //ImFont* font = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\unispace bd.ttf", 14, NULL, io.Fonts->GetGlyphRangesDefault());
+    ImFont* font = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\HPSimplified_Bd.ttf", 16, NULL, io.Fonts->GetGlyphRangesDefault());
+    //ImFont* font = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\tahomabd.ttf", 16, NULL, io.Fonts->GetGlyphRangesDefault());
+    IM_ASSERT(font != NULL);
     return font;
 }
 
