@@ -23,6 +23,8 @@ void ExploitFly(bool IsFly);
 
 void SetFullbright(bool bIsSet);
 
+void EasyPalCondensation(bool bIsSet);
+
 void SpeedHack(float mSpeed);
 
 void SetDemiGodMode(bool bIsSet);

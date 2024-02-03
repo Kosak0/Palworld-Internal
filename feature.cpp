@@ -255,6 +255,16 @@ void SetFullbright(bool bIsSet)
 }
 
 //	
+void EasyPalCondensation(bool bIsSet)
+{
+	SDK::TMap<int32, int32> RankRequired = SDK::TMap<int32, int32>();
+	SDK::UWorld* world = Config.GetUWorld();
+	SDK::UPalUtility* aPalUtility = SDK::UPalUtility::GetDefaultObj();
+	aPalUtility->GetGameSetting(world)->CharacterRankUpRequiredNumDefault = 1;
+	aPalUtility->GetGameSetting(world)->CharacterRankUpRequiredNumMap = RankRequired;
+}
+
+//	
 void SpeedHack(float mSpeed)
 {
 	UWorld* pWorld = Config.gWorld;

@@ -15,6 +15,7 @@ public:
 	//check
 	bool IsESP = false;
 	bool IsFullbright = false;
+	bool IsEasyPalCondensation = false;
 	bool IsForgeMode = false;
 	bool IsTeleportAllToXhair = false;
 	bool IsDeathAura = false;
