@@ -582,7 +582,7 @@ namespace DX11_Base
 
                 ImGui::InputInt("Num To Add", &num_to_add);
 
-                ImGui::Combo("Item Category", &category, "Accessories\0Ammo\0Armor\0Blueprints\0Skills\0Crafting Materials\0Eggs\0Food\0Hats\0Medicine\0Money\0Other\0Pal Spheres\0Seeds\0Tools\0Weapons\0");
+                ImGui::Combo("Item Category", &category, "Accessories\0Ammo\0Armor\0Blueprints\0Skills\0Saddles\0Crafting Materials\0Eggs\0Food\0Hats\0Medicine\0Money\0Other\0Pal Spheres\0Seeds\0Tools\0Weapons\0");
 
                 std::initializer_list list = itemlist::accessories;
 
@@ -592,18 +592,19 @@ namespace DX11_Base
                     case 2: list = itemlist::armor; break;
                     case 3: list = itemlist::blueprints; break;
                     case 4: list = itemlist::skills; break;
-                    case 5: list = itemlist::craftingmaterials; break;
-                    case 6: list = itemlist::eggs; break;
-                    case 7: list = itemlist::food; break;
-                    case 8: list = itemlist::hats; break;
-                    case 9: list = itemlist::medicine; break;
-                    case 10: list = itemlist::money; break;
-                    case 11: list = itemlist::other; break;
-                    case 12: list = itemlist::palspheres; break;
-                    case 13: list = itemlist::seeds; break;
-                    case 14: list = itemlist::tools; break;
-                    case 15: list = itemlist::weapons; break;
-                    default: list = itemlist::craftingmaterials; break;
+                    case 5: list = itemlist::saddles; break;
+                    case 6: list = itemlist::craftingmaterials; break;
+                    case 7: list = itemlist::eggs; break;
+                    case 8: list = itemlist::food; break;
+                    case 9: list = itemlist::hats; break;
+                    case 10: list = itemlist::medicine; break;
+                    case 11: list = itemlist::money; break;
+                    case 12: list = itemlist::other; break;
+                    case 13: list = itemlist::palspheres; break;
+                    case 14: list = itemlist::seeds; break;
+                    case 15: list = itemlist::tools; break;
+                    case 16: list = itemlist::weapons; break;
+                    default: list = itemlist::ammo; break;
                 }
 
                 int cur_size = 0;
