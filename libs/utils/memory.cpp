@@ -9,6 +9,14 @@ memory::allocator::~allocator()
 	this->clear();
 }
 
+void memory::WriteToMemory(uintptr_t addressToWrite, void* valueToWrite, int byteNum)
+{
+	unsigned long OldProtection;
+	VirtualProtect((LPVOID)(addressToWrite), byteNum, PAGE_EXECUTE_READWRITE, &OldProtection);
+	memcpy((LPVOID)addressToWrite, valueToWrite, byteNum);
+	VirtualProtect((LPVOID)(addressToWrite), byteNum, OldProtection, NULL);
+}
+
 void memory::allocator::clear()
 {
 	std::lock_guard _(this->mutex_);

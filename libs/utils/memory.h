@@ -8,6 +8,9 @@ std::uint8_t* find_sig(LPCSTR module_name, const std::string& byte_array);
 class memory final
 {
 public:
+
+	static void WriteToMemory(uintptr_t addressToWrite, void* valueToWrite, int byteNum);
+
 	class allocator final
 	{
 	public:

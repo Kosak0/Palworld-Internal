@@ -170,7 +170,7 @@ namespace DX11_Base
                 if (ImGui::Checkbox("InfAmmo", &Config.IsInfinAmmo))
                     SetInfiniteAmmo(Config.IsInfinAmmo);
 
-                if (ImGui::Checkbox("TELEPORT PALS TO XHAIR", &Config.IsTeleportAllToXhair) && !Config.IsTeleportAllToXhair)
+                if (ImGui::Checkbox("Teleport Pals To XHair", &Config.IsTeleportAllToXhair) && !Config.IsTeleportAllToXhair)
                     Config.mDebugEntCapDistance = 10.f;
                 if (Config.IsTeleportAllToXhair)
                 {
@@ -179,7 +179,7 @@ namespace DX11_Base
                     ImGui::SliderFloat("##ENT_CAP_DISTANCE", &Config.mDebugEntCapDistance, 1.0f, 100.f, "%.0f", ImGuiSliderFlags_AlwaysClamp);
                 }
 
-                if (ImGui::Checkbox("DEATH AURA", &Config.IsDeathAura) && !Config.IsDeathAura)
+                if (ImGui::Checkbox("Death Aura", &Config.IsDeathAura) && !Config.IsDeathAura)
                 {
                     Config.mDeathAuraDistance = 10.0f;
                     Config.mDeathAuraAmount = 1;
@@ -200,19 +200,19 @@ namespace DX11_Base
                 if (ImGui::Checkbox("FullBright", &Config.IsFullbright))
                     SetFullbright(Config.IsFullbright);
 
-                if (ImGui::Checkbox("Easy Pal Condensation", &Config.IsEasyPalCondensation))
-                    EasyPalCondensation(Config.IsEasyPalCondensation);
+                /*if (ImGui::Checkbox("Easy Pal Condensation", &Config.IsEasyPalCondensation))
+                    EasyPalCondensation(Config.IsEasyPalCondensation);*/
 
                 ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x * .65);
-                ImGui::InputTextWithHint("##NAME_INPUT_BUFFER", "ENTER NEW NICKNAME", inputBuffer_nickname, 16);
+                ImGui::InputTextWithHint("##NAME_INPUT_BUFFER", "Enter New Nickname", inputBuffer_nickname, 16);
                 ImGui::SameLine();
-                if (ImGui::Button("SET"))
+                if (ImGui::Button("Set"))
                 {
                     SetPlayerNickname(std::string(inputBuffer_nickname));
                     memset(inputBuffer_nickname, 0, 16);
                 }
                 ImGui::SameLine();
-                if (ImGui::Button("SET RANDOM", ImVec2(ImGui::GetContentRegionAvail().x, 20)))
+                if (ImGui::Button("Set Random", ImVec2(ImGui::GetContentRegionAvail().x, 20)))
                 {
                     //  @TODO: initialize instance at runtime and store as a variable in config
                     static SDK::UKismetStringLibrary* lib = SDK::UKismetStringLibrary::GetDefaultObj();
@@ -238,13 +238,13 @@ namespace DX11_Base
                 ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x * .3);
                 ImGui::InputInt("##ADD_TECH_POINTS", &inputTechPoints_buffer);
                 ImGui::SameLine();
-                if (ImGui::Button("TECH POINTS"))
+                if (ImGui::Button("Tech Points"))
                 {
                     GiveTechExploit(inputTechPoints_buffer);
                     inputTechPoints_buffer = 1;
                 }
                 ImGui::SameLine();
-                if (ImGui::Button("ANCIENT TECH POINTS", ImVec2(ImGui::GetContentRegionAvail().x, 0)))
+                if (ImGui::Button("Ancient Tech Points", ImVec2(ImGui::GetContentRegionAvail().x, 0)))
                 {
                     AddAncientTechPoints(inputTechPoints_buffer);
                     inputTechPoints_buffer = 1;
@@ -308,6 +308,26 @@ namespace DX11_Base
                 if (ImGui::Button("Give exp", ImVec2(ImGui::GetContentRegionAvail().x, 20)))
                 GiveExperiencePoints(Config.EXP);
 
+                if (ImGui::Button("Easy Pal Condensation", ImVec2(ImGui::GetContentRegionAvail().x - 3, 20)))
+                {
+                    SDK::TMap<int32, int32> RankRequired = SDK::TMap<int32, int32>();
+                    SDK::UWorld* world = Config.GetUWorld();
+                    SDK::UPalUtility* aPalUtility = SDK::UPalUtility::GetDefaultObj();
+                    aPalUtility->GetGameSetting(world)->CharacterRankUpRequiredNumDefault = 1;
+                    aPalUtility->GetGameSetting(world)->CharacterRankUpRequiredNumMap = RankRequired;
+                }
+
+                if (ImGui::Button("Infinite Ammo / Pal Sphere", ImVec2(ImGui::GetContentRegionAvail().x - 3, 20)))
+                {
+                    auto noconsume = signature("40 55 53 41 55 41 57 48 8D 6C 24 C1 48 81 EC ?? 00 00 00 45 8B F8 4C 8B").GetPointer();
+
+                    BYTE patch[] = {
+                        0xc3, 0x90
+                    };
+
+                    memory::WriteToMemory(noconsume, patch, 2);
+                }
+
 
                 ImGui::EndChild();
             }
@@ -322,7 +342,7 @@ namespace DX11_Base
             ImGui::Spacing();
             ImGui::Separator();
             ImGui::Spacing();
-            if (ImGui::Button("UNHOOK DLL", ImVec2(ImGui::GetContentRegionAvail().x - 3, 20))) {
+            if (ImGui::Button("Unhook DLL", ImVec2(ImGui::GetContentRegionAvail().x - 3, 20))) {
 #if DEBUG
                 g_Console->printdbg("\n\n[+] UNHOOK INITIALIZED [+]\n\n", Console::Colors::red);
 
