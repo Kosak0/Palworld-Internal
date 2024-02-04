@@ -170,7 +170,7 @@ namespace itemlist
         "ClothArmorHeat_2|Tropical Outfit(Uncommon)",
         "ClothArmorHeat_3|Tropical Outfit(Rare)",
         "ClothArmorHeat_4|Tropical Outfit(Epic)",
-        "ClothArmorHeat_5|Tropical Outfit(Legendary)",
+        "ClothArmorHeat_5|Tropical Outfit(Legendary)"
     };
 
     const auto blueprints =
@@ -338,7 +338,7 @@ namespace itemlist
         "Blueprint_Launcher_Default_2|Blueprint Rocket Launcher(Uncommon)",
         "Blueprint_Launcher_Default_3|Blueprint Rocket Launcher(Rare)",
         "Blueprint_Launcher_Default_4|Blueprint Rocket Launcher(Epic)",
-        "Blueprint_Launcher_Default_5|Blueprint Rocket Launcher(Legendary)",
+        "Blueprint_Launcher_Default_5|Blueprint Rocket Launcher(Legendary)"
     };
 
     const auto skills =
@@ -395,7 +395,7 @@ namespace itemlist
         "SkillCard_WaterGun|Water: Aqua Gun",
         "SkillCard_BubbleShot|Water: Bubble Blast",
         "SkillCard_HydroPump|Water: Hydro Laser",
-        "SkillCard_AquaJet|Water: Hydro Jet",
+        "SkillCard_AquaJet|Water: Hydro Jet"
     };
 
     const auto saddles =
@@ -487,7 +487,7 @@ namespace itemlist
         "SkillUnlock_Yeti_Grass|Wumpo Botan Saddle",
         "SkillUnlock_KingAlpaca_Ice|Ice Kingpaca Saddle",
         "SkillUnlock_BirdDragon_Ice|Vanwyrm Cryst Saddle",
-        "SkillUnlock_WindChimes_Ice|Hangyu Cryst's Gloves",
+        "SkillUnlock_WindChimes_Ice|Hangyu Cryst's Gloves"
     };
 
     const auto craftingmaterials =
@@ -784,7 +784,7 @@ namespace itemlist
         "PalSphere|Pal Sphere",
         "PalSphere_Robbery|Radar Sphere",
         "PalSphere_Master|Ultra Sphere",
-        "PalSphere_Debug|Dev Sphere",
+        "PalSphere_Debug|Dev Sphere"
     };
 
     const auto seeds =
@@ -792,7 +792,7 @@ namespace itemlist
         "BerrySeeds|Berry Seeds",
         "LettuceSeeds|Lettuce Seeds",
         "TomatoSeeds|Tomato Seeds",
-        "WheatSeeds|Wheat Seeds",
+        "WheatSeeds|Wheat Seeds"
     };
 
     const auto tools =
@@ -890,7 +890,7 @@ namespace itemlist
         "SphereLauncher_Once|Single-shot Sphere Launcher",
         "Sword|Sword",
         "Bow_triple|Triple Shot Bow",
-        "Bat|Wooden Club",
+        "Bat|Wooden Club"
     };
 
     const auto money =

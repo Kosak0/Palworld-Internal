@@ -5,6 +5,7 @@
 #include "ItemList.hpp"
 
 typedef bool(*Tick)(SDK::APalPlayerCharacter* m_this, float DeltaSecond);
+typedef void(*CatchRate)(SDK::APalCaptureJudgeObject* m_this);
 
 class config
 {
@@ -12,10 +13,14 @@ public:
 	//offsets
 	DWORD64 ClientBase = 0;
 	DWORD64 offset_Tick = 0x2AD4EC0;//APalPlayerCharacter::Tick // 48 89 5C 24 ? 57 48 83 EC 60 48 8B F9 E8 ? ? ? ? 48 8B | [IDA NOTE: 2ND RESULT]
+	DWORD64 offset_CatchRate = 0x26C7280; //APalCaptureJudgeObject::ChallengeCapture
 	//check
 	bool IsESP = false;
 	bool IsFullbright = false;
 	bool IsEasyPalCondensation = false;
+	bool IsRevive = false;
+	bool isCatchRate = false;
+	bool isTimeOfDay = false;
 	bool IsForgeMode = false;
 	bool IsTeleportAllToXhair = false;
 	bool IsDeathAura = false;
@@ -42,12 +47,14 @@ public:
 	float mDebugESPDistance = 5.0f;
 	float mDebugEntCapDistance = 10.0f;
 	float mDeathAuraDistance = 10.f;
+	float CatchRate = 1;
 	int mDeathAuraAmount = 1.f;
 	int DamageUp = 0;
 	int DefuseUp = 0;
 	int EXP = 0;
 	int Tech = 0;
 	int Item = 0;
+	int TimeOfDay = 0;
 	float Pos[3] = { 0.0f, 0.0f, 0.0f };
 	char ItemName[255];
 	char inputTextBuffer[255] = "";

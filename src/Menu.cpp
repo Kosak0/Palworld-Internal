@@ -24,6 +24,33 @@ int InputTextCallback(ImGuiInputTextCallbackData* data) {
     return 0;
 }
 
+CatchRate CRate;
+CatchRate OldRate;
+
+void DetourCatchRate(SDK::APalCaptureJudgeObject* p_this) {
+    if (p_this) {
+        //p_this->ChallengeCapture_ToServer(Config.localPlayer, Config.CatchRate);
+        p_this->ChallengeCapture(Config.localPlayer, Config.CatchRate);
+    }
+}
+void ToggleCatchRate(bool catchrate) {
+    if (catchrate) {
+        if (CRate == NULL) {
+            CRate = (CatchRate)(Config.ClientBase + Config.offset_CatchRate);
+            MH_CreateHook(CRate, DetourCatchRate, reinterpret_cast<void**>(OldRate));
+            MH_EnableHook(CRate);
+            return;
+        }
+        MH_EnableHook(CRate);
+        return;
+    }
+    else
+    {
+        MH_DisableHook(CRate);
+
+    }
+}
+
 namespace DX11_Base 
 {    
     // helper variables
@@ -163,6 +190,8 @@ namespace DX11_Base
                     ImGui::SliderInt("##defenseModifilers", &Config.DefuseUp, 0, 200000);
                 }
 
+                ImGui::Checkbox("Revive", &Config.IsRevive);
+
                 ImGui::Checkbox("Godmode", &Config.IsGodMode);
 
                 ImGui::Checkbox("InfStamina", &Config.IsInfStamina);
@@ -192,6 +221,14 @@ namespace DX11_Base
                     ImGui::SameLine();
                     ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
                     ImGui::SliderInt("##AURA_DMG", &Config.mDeathAuraAmount, 1, 10, "%d", ImGuiSliderFlags_AlwaysClamp);
+                }
+
+                ImGui::Checkbox("Time Of Day", &Config.isTimeOfDay);
+                if (Config.isTimeOfDay)
+                {
+                    ImGui::SameLine();
+                    gWindow->DC.CursorPos.x = cursorX;
+                    ImGui::SliderInt("Time Of Day", &Config.TimeOfDay, 0, 23);
                 }
 
                 if (ImGui::Checkbox("Float Mode", &Config.IsToggledFly))
@@ -328,6 +365,17 @@ namespace DX11_Base
                     memory::WriteToMemory(noconsume, patch, 2);
                 }
 
+                if (ImGui::Button("Max Capture Power(Multiplayer)", ImVec2(ImGui::GetContentRegionAvail().x - 3, 20)))
+                {
+                    Config.GetPalPlayerCharacter()->GetPalPlayerController()->Transmitter->GetCharacterStatusOperation()->RequestPlayerStatusUp_ToServer(999999999);
+                }
+
+                if (ImGui::Button("Catch Rate(SinglePlayer)", ImVec2(ImGui::GetContentRegionAvail().x - 3, 20)))
+                {
+                    Config.isCatchRate = !Config.isCatchRate;
+                    ToggleCatchRate(Config.isCatchRate);
+                }
+                ImGui::InputFloat("Catch Rate Modifier", &Config.CatchRate);
 
                 ImGui::EndChild();
             }
@@ -810,7 +858,7 @@ namespace DX11_Base
                 Tabs::TABPlayer();
                 ImGui::EndTabItem();
             }
-            if (ImGui::BeginTabItem("EXPLOIT"))
+            if (ImGui::BeginTabItem("Exploit"))
             {
                 Tabs::TABExploit();
                 ImGui::EndTabItem();
@@ -830,7 +878,7 @@ namespace DX11_Base
                 Tabs::TABEntityManager();
                 ImGui::EndTabItem();
             }
-            if (ImGui::BeginTabItem("CONFIG"))
+            if (ImGui::BeginTabItem("Config"))
             {
                 Tabs::TABConfig();
                 ImGui::EndTabItem();
@@ -851,7 +899,7 @@ namespace DX11_Base
                 ImGui::EndTabItem();
             }
 #if DEBUG
-            if (ImGui::BeginTabItem("DEBUG"))
+            if (ImGui::BeginTabItem("Debug"))
             {
                 Tabs::TABDebug();
                 ImGui::EndTabItem();
