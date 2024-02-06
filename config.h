@@ -55,6 +55,7 @@ public:
 	int Tech = 0;
 	int Item = 0;
 	int TimeOfDay = 0;
+	int inputStatePoints_buffer = 1;
 	float Pos[3] = { 0.0f, 0.0f, 0.0f };
 	char ItemName[255];
 	char inputTextBuffer[255] = "";

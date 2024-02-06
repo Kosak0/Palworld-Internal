@@ -59,6 +59,7 @@ namespace DX11_Base
     char inputBuffer_setWaypoint[32];
     char inputBuffer_nickname[16];
     int inputTechPoints_buffer = 1;
+    int inputStatePoints_buffer = 1;
 
     namespace Styles 
     {
@@ -286,6 +287,19 @@ namespace DX11_Base
                     AddAncientTechPoints(inputTechPoints_buffer);
                     inputTechPoints_buffer = 1;
                 }
+
+                /*ImGui::InputInt("##State Points", &inputStatePoints_buffer);
+                ImGui::SameLine();
+                if (ImGui::Button("Add State Points", ImVec2(ImGui::GetContentRegionAvail().x, 0)))
+                {
+                    SDK::TArray<SDK::FPalGotStatusPoint> AddStatusPointArray = { 0U };
+                    SDK::FPalGotStatusPoint statuPoint = SDK::FPalGotStatusPoint();
+                    statuPoint.StatusName = FName("None");
+                    statuPoint.StatusPoint = -inputStatePoints_buffer;
+                    AddStatusPointArray.Add(statuPoint);
+                    Config.GetPalPlayerCharacter()->GetPalPlayerController()->Transmitter->NetworkIndividualComponent->AddPlayerCharacterStatusPoint_ToServer(Config.GetPalPlayerCharacter()->CharacterParameterComponent->IndividualHandle->ID, AddStatusPointArray);
+                    inputTechPoints_buffer = 1;
+                }*/
 
                 //Creadit Mokobake
                 //ImGui::Checkbox("MuteKiGodmode", &Config.IsMuteki);
